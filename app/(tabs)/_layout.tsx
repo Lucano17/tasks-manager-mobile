@@ -20,6 +20,8 @@ export default function TabLayout() {
         tabBarBackground: TabBarBackground,
         tabBarStyle: {
           backgroundColor: Colors[colorScheme ?? "light"].tabBackground,
+          borderTopWidth: 2,
+          borderTopColor: Colors[colorScheme ?? "light"].tint,
         },
       }}
     >
