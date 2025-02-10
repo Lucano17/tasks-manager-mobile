@@ -30,7 +30,7 @@ export default function TabLayout() {
           height: 70,
           backgroundColor: Colors[colorScheme ?? "light"].tabBackground,
           borderTopWidth: 2,
-          borderTopColor: Colors[colorScheme ?? "light"].tint,
+          borderTopColor: Colors[colorScheme ?? "light"].tabIconSelected,
         },
       }}
     >

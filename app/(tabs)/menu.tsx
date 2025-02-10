@@ -9,9 +9,16 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 
 export default function MenuScreen() {
   return (
-    <View>
-        
-    </View>
+    <ThemedView style={{
+      flex: 1,
+      padding: 32,
+      gap: 16,
+      overflow: "hidden",
+    }}>
+      <View>
+
+      </View>
+    </ThemedView>
   );
 }
 

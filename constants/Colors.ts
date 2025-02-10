@@ -7,8 +7,8 @@ const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
 const tintColorPink = '#d907d9';
 
-const pinkDark1= '#170017'
-const pinkDark2= '#240024'
+const pinkDark1 = '#170017'
+const pinkDark2 = '#240024'
 
 export const Colors = {
   light: {
@@ -43,6 +43,7 @@ export const Colors = {
 const light = {
   text: '#11181C',
   background: '#fff',
+  tabBackground: pinkDark2,
   tint: tintColorLight,
   icon: '#687076',
   tabIconDefault: '#687076',
@@ -52,6 +53,7 @@ const light = {
 const dark = {
   text: '#ECEDEE',
   background: '#151718',
+  tabBackground: pinkDark2,
   tint: tintColorDark,
   icon: '#9BA1A6',
   tabIconDefault: '#9BA1A6',
@@ -60,7 +62,8 @@ const dark = {
 const pink = {
   text: '#ECEDEE',
   background: '#050005',
-  tint: tintColorDark,
+  tabBackground: pinkDark2,
+  tint: tintColorPink,
   icon: '#9BA1A6',
   tabIconDefault: '#9BA1A6',
   tabIconSelected: tintColorPink,
