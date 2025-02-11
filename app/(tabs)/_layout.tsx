@@ -57,7 +57,7 @@ export default function TabLayout() {
             alignItems: "center",
             bottom: 20,
             left: "50%",
-            transform: [{ translateX: -35 }],
+            transform: [{ translateX: -50 }],
             borderRadius: 100,
             paddingLeft: 5,
             paddingRight: 5,
