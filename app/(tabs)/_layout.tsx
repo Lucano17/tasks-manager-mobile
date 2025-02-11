@@ -16,7 +16,6 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
         tabBarIconStyle: {
           flex: 1,
           top: 5,
@@ -24,13 +23,14 @@ export default function TabLayout() {
           height: 70,
           backgroundColor: "transparent",
         },
-        tabBarBackground: TabBarBackground,
         tabBarStyle: {
           alignItems: "center",
           height: 70,
           backgroundColor: Colors[colorScheme ?? "light"].tabBackground,
-          borderTopWidth: 2,
-          borderTopColor: Colors[colorScheme ?? "light"].tabIconSelected,
+          elevation: 0, // Elimina sombra en Android
+          shadowOpacity: 0, // Elimina sombra en iOS
+          borderWidth: 1,
+          borderColor: Colors[colorScheme ?? "light"].tint,
         },
       }}
     >

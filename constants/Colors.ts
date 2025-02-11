@@ -13,7 +13,7 @@ const pinkDark2 = '#240024'
 export const Colors = {
   light: {
     text: '#ECEDEE',
-    background: pinkDark1,
+    background: '#050005',
     tabBackground: pinkDark2,
     tint: tintColorPink,
     icon: '#9BA1A6',
