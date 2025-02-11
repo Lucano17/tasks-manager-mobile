@@ -26,6 +26,7 @@ export default function HomeScreen() {
         overflow: "hidden",
       }}
     >
+      <Text style={{color: "red"}}>Home</Text>
       {/* <FlatList
       data={tasks}
       keyExtractor={(task) => task.id}
