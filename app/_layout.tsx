@@ -5,7 +5,7 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
@@ -33,23 +33,39 @@ export default function RootLayout() {
     return null;
   }
 
-  const { authState, onLogout } = useAuth();
-
   return (
     <AuthProvider>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack>
-          {authState?.authenticated ? (
-            <>
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="+not-found" />
-              <StatusBar style="auto" />
-            </>
-          ) : (
-            <Stack.Screen name="login" options={{ headerShown: false }} />
-          )}
-        </Stack>
+        <MainLayout />
       </ThemeProvider>
     </AuthProvider>
   );
 }
+
+export const MainLayout = () => {
+  const { authState, isLoading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading) {
+      if (authState?.authenticated) {
+        router.replace("/(tabs)");
+      } else {
+        router.replace("/login");
+      }
+    }
+  }, [authState?.authenticated, isLoading]);
+
+  if (isLoading) return null;
+
+  console.log("Estado de la autenticación:", authState?.authenticated);
+
+  return (
+    <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="+not-found" options={{ headerShown: false }} />
+          <StatusBar style="auto" />
+    </Stack>
+  );
+};
+

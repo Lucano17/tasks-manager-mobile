@@ -9,6 +9,7 @@ interface AuthProps {
   onRegister?: (email: string, password: string) => Promise<any>;
   onLogin?: (email: string, password: string) => Promise<any>;
   onLogout?: () => Promise<any>;
+  isLoading?: boolean
 }
 
 const TOKEN_KEY = "my-jwt";
@@ -20,28 +21,33 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }: any) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [authState, setAuthState] = useState<{
     token: string | null;
     authenticated: boolean | null;
   }>({
     token: null,
-    authenticated: null,
+    authenticated: false,
   });
 
   useEffect(() => {
     const loadToken = async () => {
-        const token = await SecureStore.getItemAsync(TOKEN_KEY)
-        if (token) {
-            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+      const token = await SecureStore.getItemAsync(TOKEN_KEY);
+      console.log("Token en SecureStore:", token); // ✅ Revisa qué se guarda
+      if (token) {
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-            setAuthState({
-                token: token,
-                authenticated: true
-            })
-        }
-    }
-    loadToken()
-  }, [])
+        setAuthState({
+          token: token,
+          authenticated: true,
+        });
+      } else {
+        setAuthState({ token: null, authenticated: false });
+      }
+      setIsLoading(false);
+    };
+    loadToken();
+  }, []);
 
   const register = async (email: string, password: string) => {
     try {
@@ -91,6 +97,7 @@ export const AuthProvider = ({ children }: any) => {
     onLogin: login,
     onLogout: logout,
     authState,
+    isLoading,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

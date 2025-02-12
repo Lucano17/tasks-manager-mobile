@@ -7,9 +7,13 @@ import { ThemedView } from "@/components/ThemedView";
 import { FlatList } from "react-native-reanimated/lib/typescript/Animated";
 import { useEffect, useState } from "react";
 import { fetchTasks } from "@/api/getTasks";
+import { useAuth } from "@/context/AuthContext";
 
 export default function HomeScreen() {
   const [tasks, setTasks] = useState([]);
+   const { authState, 
+      // isLoading
+     } = useAuth();
 
   useEffect(()=>{
     fetchTasks().then((games) => {
@@ -26,7 +30,13 @@ export default function HomeScreen() {
         overflow: "hidden",
       }}
     >
-      <Text style={{color: "red"}}>Home</Text>
+      {authState?.authenticated ? (
+                    <>
+                      <Text style={{color: "red"}}>Hola, estás logueado</Text>
+                    </>
+                  ) : (
+                    <Text style={{color: "red"}}>Hola, no estás logueado</Text>
+                  )}
       {/* <FlatList
       data={tasks}
       keyExtractor={(task) => task.id}
